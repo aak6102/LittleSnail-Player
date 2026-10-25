@@ -1,0 +1,16 @@
+小蜗牛播放器 (LittleSnail Player)
+=====================
+
+本仓库是基于 Next Player（https://github.com/anilbeesetti/nextplayer）修改的衍生作品。
+
+Next Player
+  版权所有 © Anil Beesetti 及贡献者
+  基于 GNU General Public License v3.0（GPL-3.0）许可发布。
+
+本项目的修改部分
+  版权所有 © 2026 小蜗牛播放器作者
+  同样基于 GNU General Public License v3.0（GPL-3.0）许可发布。
+
+本程序是自由软件：你可以根据 GPL-3.0 的条款重新发布或修改它。
+本程序以「原样」提供，不附带任何明示或暗示的担保。
+随本程序应附有 GPL-3.0 全文，见 LICENSE 文件。
