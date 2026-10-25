@@ -1,5 +1,4 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-import java.util.Properties
 
 plugins {
     alias(libs.plugins.androidApplication)
@@ -43,22 +42,29 @@ android {
             keyPassword = "android"
         }
         // 正式发布签名：从本地 local.properties 读取（该文件已被 .gitignore 忽略，不会进入仓库）
-        // 请在 local.properties 中追加以下内容（不要提交到 Git）：
+        // 请在 local.properties 中追加：
         //   tk.storeFile=../keystore/release.keystore
         //   tk.storePassword=你的密码
         //   tk.keyAlias=tongkan
         //   tk.keyPassword=你的密码
-        val localProps = java.util.Properties().apply {
+        val tkProps = run {
             val f = rootProject.file("local.properties")
-            if (f.exists()) f.inputStream().use { load(it) }
+            if (!f.exists()) return@run emptyMap<String, String>()
+            f.readText().lineSequence().mapNotNull { line ->
+                val t = line.trim()
+                if (t.isEmpty() || t.startsWith("#") || t.startsWith("!")) return@mapNotNull null
+                val eq = t.indexOf('=')
+                if (eq <= 0) return@mapNotNull null
+                t.substring(0, eq).trim() to t.substring(eq + 1).trim()
+            }.toMap()
         }
-        val tkStoreFile = localProps.getProperty("tk.storeFile")
-        val tkStorePassword = localProps.getProperty("tk.storePassword")
-        val tkKeyAlias = localProps.getProperty("tk.keyAlias")
-        val tkKeyPassword = localProps.getProperty("tk.keyPassword")
+        val tkStoreFile = tkProps["tk.storeFile"]
+        val tkStorePassword = tkProps["tk.storePassword"]
+        val tkKeyAlias = tkProps["tk.keyAlias"]
+        val tkKeyPassword = tkProps["tk.keyPassword"]
         if (tkStoreFile != null && tkStorePassword != null && tkKeyAlias != null && tkKeyPassword != null) {
             create("release") {
-                storeFile = file(tkStoreFile)
+                storeFile = rootProject.file(tkStoreFile)
                 storePassword = tkStorePassword
                 keyAlias = tkKeyAlias
                 keyPassword = tkKeyPassword
