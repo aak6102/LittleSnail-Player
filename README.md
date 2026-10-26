@@ -12,7 +12,7 @@
 
 - **一句话定位**：给孩子用的「不能快进」视频播放器。
 - **许可**：与原项目一致，遵循 **GNU GPL-3.0**（详见 `LICENSE`）。
-- **当前版本**：v1.0.0（`applicationId` 沿用 `dev.anilbeesetti.nextplayer`，可直接覆盖安装原版）。
+- **当前版本**：v1.0.0（`versionCode=1`）。`applicationId` 沿用 `dev.anilbeesetti.nextplayer`，但使用**独立签名密钥**，因此不能直接覆盖安装官方 Next Player，需先卸载官方版本再安装本应用。
 
 ---
 
@@ -86,7 +86,9 @@ tk.keyPassword=你的密码
 ## 下载
 
 - 最新正式版见 [Releases](releases/latest)。
-- v1.0.0 提供 **arm64-v8a**（约 19MB，平板推荐）与 **universal**（约 54MB）两个签名安装包。
+- v1.0.0 提供两个签名安装包：
+  - `LittleSnailPlayer-arm64-v8a-v1.0.0.apk`（约 19MB，推荐大多数安卓平板/手机）
+  - `LittleSnailPlayer-universal-v1.0.0.apk`（约 54MB，兼容更多架构）
 
 ---
 
